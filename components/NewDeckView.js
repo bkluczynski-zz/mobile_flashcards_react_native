@@ -1,3 +1,4 @@
+<script src="http://localhost:8097"></script>
 import React, { Component } from 'react'
 import { View,
          TouchableOpacity,
@@ -7,19 +8,25 @@ import { View,
          KeyboardAvoidingView
        } from 'react-native'
 import SubmitButton from './SubmitButton'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
+
 
 class NewDeckView extends Component {
 
   state = {
     deckTitle: ''
-
   }
 
   submit = () => {
-    console.log("sent")
+    const { deckTitle } = this.state
+    this.props.dispatch(addDeck(deckTitle))
   }
 
   render(){
+
+    console.log('props',this.props)
+
     return (
       <View style={styles.container}>
         <Text style={{fontSize: 25, padding:20, textAlign:'center'}}>What is the title of your new deck?</Text>
@@ -53,4 +60,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default NewDeckView
+export default connect()(NewDeckView)
