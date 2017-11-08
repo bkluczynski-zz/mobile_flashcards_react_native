@@ -6,6 +6,7 @@ import { View,
          TextInput,
          KeyboardAvoidingView
        } from 'react-native'
+import SubmitButton from './SubmitButton'
 
 class NewDeckView extends Component {
 
@@ -14,16 +15,21 @@ class NewDeckView extends Component {
 
   }
 
+  submit = () => {
+    console.log("sent")
+  }
+
   render(){
     return (
-      <View>
-        <Text style={{fontSize: 25}}>What is the title of your new deck?</Text>
+      <View style={styles.container}>
+        <Text style={{fontSize: 25, padding:20, textAlign:'center'}}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
           onChangeText={(deckTitle) => this.setState({deckTitle})}
           value={this.state.deckTitle}
-          keyboardType={'default'}
-          ></TextInput>
+          >
+        </TextInput>
+        <SubmitButton onPress={this.submit}/>
       </View>
     )
   }
@@ -31,13 +37,19 @@ class NewDeckView extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
   input : {
-    widht: 200,
+    width: 200,
     height: 44,
     padding: 8,
     borderWidth: 1,
     borderColor: '#757575',
-    margin:50
+    margin:20
   },
 })
 
