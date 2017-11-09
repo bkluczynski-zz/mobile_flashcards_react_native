@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import SubmitButton from './SubmitButton'
+import { connect } from 'react-redux'
+import { addCardToDeck } from '../actions'
 
 
 class AddCardView extends Component {
@@ -11,14 +13,15 @@ class AddCardView extends Component {
   }
 
   submit = () => {
-    console.log("pressed!")
+    const entry = this.state;
+    const { dispatch } = this.props;
+    dispatch(addCardToDeck("Bart", entry))
+
   }
 
   render(){
 
-    console.log("questions are,", this.state.question)
-    console.log("questions are,", this.state.answer)
-
+console.log(this.props)
 
     return (
       <View style={styles.container}>
@@ -39,8 +42,6 @@ class AddCardView extends Component {
       </View>
     )
   }
-
-
 }
 
 const styles = StyleSheet.create({
@@ -59,4 +60,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AddCardView;
+export default connect()(AddCardView);

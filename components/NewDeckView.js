@@ -16,7 +16,7 @@ import { saveDeckTitle } from '../utils/helpers'
 class NewDeckView extends Component {
 
   state = {
-    deckTitle: ''
+    deckTitle: '',
   }
 
   submit = () => {
