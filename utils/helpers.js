@@ -14,3 +14,6 @@ export function saveDeckTitle(title){
     })
   })
 }
+export function getAllDecks(){
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+}

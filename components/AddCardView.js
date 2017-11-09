@@ -15,6 +15,8 @@ class AddCardView extends Component {
   submit = () => {
     const entry = this.state;
     const { dispatch } = this.props;
+
+    //hardcoded will need to change to title later
     dispatch(addCardToDeck("Bart", entry))
 
   }
