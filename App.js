@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createLogger } from 'redux-logger'
 import {  setAsyncDatabase } from './utils/helpers'
-
+import AddCardView from './components/AddCardView'
 
 export default class App extends React.Component {
 
@@ -21,7 +21,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{flex:1}}>
-          <NewDeckView/>
+          <AddCardView/>
         </View>
       </Provider>
     );

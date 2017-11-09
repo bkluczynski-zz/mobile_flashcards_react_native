@@ -21,11 +21,14 @@ class NewDeckView extends Component {
 
   submit = () => {
     const { deckTitle } = this.state
-    const key = this.state.deckTitle
-    this.props.dispatch(addDeck(deckTitle))
+    const { dispatch } = this.props
 
+    //add title to decks in redux
+    dispatch(addDeck(deckTitle))
+    //save deck title in asyncStorage
     saveDeckTitle(deckTitle)
 
+    //clear the state of deckTitle after successful submition
     this.setState(() => ({
       deckTitle: ''
     }))
