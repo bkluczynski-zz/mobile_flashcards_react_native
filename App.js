@@ -5,10 +5,10 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createLogger } from 'redux-logger'
+import {  setAsyncDatabase } from './utils/helpers'
 
 
 export default class App extends React.Component {
-
 
   render() {
 

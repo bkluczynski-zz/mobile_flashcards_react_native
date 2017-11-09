@@ -10,6 +10,7 @@ import { View,
 import SubmitButton from './SubmitButton'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
+import { saveDeckTitle } from '../utils/helpers'
 
 
 class NewDeckView extends Component {
@@ -20,7 +21,13 @@ class NewDeckView extends Component {
 
   submit = () => {
     const { deckTitle } = this.state
+    const key = this.state.deckTitle
     this.props.dispatch(addDeck(deckTitle))
+
+    saveDeckTitle(deckTitle)
+
+    //clean the deckTitle
+
   }
 
   render(){
