@@ -26,7 +26,9 @@ class NewDeckView extends Component {
 
     saveDeckTitle(deckTitle)
 
-    //clean the deckTitle
+    this.setState(() => ({
+      deckTitle: ''
+    }))
 
   }
 
