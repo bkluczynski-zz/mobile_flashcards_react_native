@@ -15,16 +15,15 @@ class DeckListView extends Component {
   render(){
     const { decks } = this.props
 
-
-
-    console.log('decks', decks)
     return (
       <View>
-        {decks &&
-        <Text>
-          HeLLO
-        </Text>
-        }
+        {decks && Object.keys(decks).map(key => decks[key]).map(deck => (
+            <View key={deck.title}>
+              <Text>
+                {deck.title}
+              </Text>
+            </View>
+        ))}
       </View>
     )
 
