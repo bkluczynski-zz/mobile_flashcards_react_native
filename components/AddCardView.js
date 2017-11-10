@@ -40,7 +40,7 @@ console.log(this.props)
           onChangeText={(answer) => this.setState({answer})}
           >
         </TextInput>
-        <SubmitButton onPress={this.submit}/>
+        <SubmitButton onPress={this.submit} text={'SUBMIT'}/>
       </View>
     )
   }

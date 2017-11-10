@@ -19,6 +19,7 @@ class DeckListView extends Component {
 
   onPress = (title) => {
     this.props.navigation.navigate('IndividualDeckView',{title : title})
+    console.log('i got pressed')
   }
 
 

@@ -5,21 +5,24 @@ import { connect } from 'redux'
 
 class IndividualDeckView extends Component {
 
+  onPress = () => {
+    console.log("i got clicked")
+    this.props.navigation.navigate('AddCardView')
+  }
+
   render(){
     const { title } = this.props.navigation.state.params
-    console.log("indie", this.props)
     return (
       <View style={styles.container}>
         <Text style={{paddingBottom: 60, fontSize: 30}}>
           {title}
         </Text>
-        <SubmitButton text={"Add Card"}/>
+        <SubmitButton text={"Add Card"} onPress={this.onPress}/>
         <SubmitButton text={"Start Quiz"}/>
       </View>
 
     )
   }
-
 
 }
 
