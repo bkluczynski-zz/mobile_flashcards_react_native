@@ -48,7 +48,7 @@ class NewDeckView extends Component {
           value={this.state.deckTitle}
           >
         </TextInput>
-        <SubmitButton onPress={this.submit}/>
+        <SubmitButton onPress={this.submit} text={"SUBMIT"}/>
       </View>
     )
   }

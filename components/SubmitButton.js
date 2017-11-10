@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-const SubmitButton = ({ onPress }) => {
+const SubmitButton = ({ onPress, text }) => {
 
   return (
     <TouchableOpacity
@@ -9,7 +9,7 @@ const SubmitButton = ({ onPress }) => {
       style= { styles.button }
       >
       <Text style={styles.submitBtnText}>
-        SUBMIT
+        {text}
       </Text>
     </TouchableOpacity>
   )
