@@ -10,10 +10,19 @@ import AddCardView from './components/AddCardView'
 import DeckListView from './components/DeckListView'
 import StatusBar from './components/StatusBar'
 import { TabNavigator, StackNavigator } from 'react-navigation';
+import IndividualDeckView from './components/IndividualDeckView'
 
+const Stack = StackNavigator({
+  DeckListView: {
+    screen: DeckListView
+  },
+  IndividualDeckView: {
+    screen: IndividualDeckView
+  }
+})
   const Tabs = TabNavigator({
     DeckListView: {
-      screen: DeckListView,
+      screen: Stack,
       navigationOptions: {
         tabBarLabel: 'DECKS',
       }
@@ -51,6 +60,7 @@ export default class App extends React.Component {
 
   render() {
 
+    console.log("props",this.props)
     const logger = createLogger()
     const store = createStore(
       reducer,
