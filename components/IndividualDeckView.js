@@ -6,6 +6,8 @@ import { connect } from 'redux'
 class IndividualDeckView extends Component {
 
   render(){
+
+    console.log("indie", this.props)
     return (
       <View>
         <Text>

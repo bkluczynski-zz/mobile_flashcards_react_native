@@ -7,6 +7,7 @@ import  SingleDeck from './SingleDeck'
 import { List, ListItem } from 'react-native-elements'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import IndividualDeckView from './IndividualDeckView'
+import { NavigationActions } from 'react-navigation'
 
 
 class DeckListView extends Component {
@@ -16,9 +17,9 @@ class DeckListView extends Component {
     getAllDecks().then(results => dispatch(receiveAllDecks(JSON.parse(results))))
   }
 
-  onPress = () => (
-    this.props.navigation.navigate('IndividualDeckView')
-  )
+  onPress = (title) => {
+    this.props.navigation.navigate('IndividualDeckView',{title : title})
+  }
 
 
   render(){
@@ -34,7 +35,7 @@ class DeckListView extends Component {
           <SingleDeck
             key={deck.title}
             title={deck.title}
-            onPress={this.onPress}
+            onPress={() => this.onPress(deck.title)}
             />
         ))}
       </List>
