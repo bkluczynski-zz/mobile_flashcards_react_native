@@ -8,6 +8,7 @@ import { createLogger } from 'redux-logger'
 import {  setAsyncDatabase } from './utils/helpers'
 import AddCardView from './components/AddCardView'
 import DeckListView from './components/DeckListView'
+import StatusBar from './components/StatusBar'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 
   const Tabs = TabNavigator({
@@ -29,10 +30,12 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
   },
   tabBarPosition: 'top',
   tabBarOptions: {
-    activeTintColor: '#e91e63',
+    activeTintColor: 'red',
+    labelStyle: {
+    fontSize: 14,
+  },
     style: {
-      height: 56,
-      backgroundColor: 'red',
+      backgroundColor: 'white',
       shadowColor: 'rgba(0,0,0,0.24)',
       shadowOffset: {
         width: 0,
@@ -57,6 +60,9 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{flex:1}}>
+          <StatusBar
+            backgroundColor={'red'}
+            barStyle='light-content'/>
           <Tabs/>
         </View>
       </Provider>

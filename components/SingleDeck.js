@@ -1,27 +1,23 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet, View} from 'react-native'
+import { List, ListItem } from 'react-native-elements'
+
 
 
 const SingleDeck = ({title, onPress}) => {
   return (
-    <View style={styles.deck}>
-      <TouchableOpacity
+
+    <ListItem
+        key={title}
+        title={title}
         onPress={onPress}
-        >
-        <Text style={{fontSize: 30, textAlign:'center'}}>
-        {title}
-        </Text>
-      </TouchableOpacity>
-    </View>
+        subtitle={"Cards:"}
+        titleStyle={{textAlign:'center', fontSize:24, paddingTop:30}}
+        subtitleStyle={{textAlign:'center', paddingBottom:30}}
+      />
   )
 }
 
-const styles = StyleSheet.create({
-  deck : {
-    width: 400,
-    height: 200,
-  }
-})
 
 
 export default SingleDeck;
