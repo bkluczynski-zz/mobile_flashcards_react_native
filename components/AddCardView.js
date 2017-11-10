@@ -41,6 +41,7 @@ console.log(this.props)
           >
         </TextInput>
         <SubmitButton onPress={this.submit} text={'SUBMIT'}/>
+        <SubmitButton text={"Go Back"} onPress={() => this.props.navigation.goBack()}/>
       </View>
     )
   }

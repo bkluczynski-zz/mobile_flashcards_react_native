@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import SubmitButton from './SubmitButton'
 import { connect } from 'redux'
+import DeckListView from './DeckListView'
 
 class IndividualDeckView extends Component {
 
   onPress = () => {
-    console.log("i got clicked")
     this.props.navigation.navigate('AddCardView')
+  }
+
+  goHome = () => {
+    this.props.navigation.goBack()
   }
 
   render(){
@@ -19,6 +23,7 @@ class IndividualDeckView extends Component {
         </Text>
         <SubmitButton text={"Add Card"} onPress={this.onPress}/>
         <SubmitButton text={"Start Quiz"}/>
+        <SubmitButton text={"Go Back"} onPress={() => this.props.navigation.goBack()}/>
       </View>
 
     )

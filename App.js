@@ -12,23 +12,23 @@ import StatusBar from './components/StatusBar'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import IndividualDeckView from './components/IndividualDeckView'
 
-const StackIndividual = StackNavigator({
-  IndividualDeckView: {
-    screen: IndividualDeckView
-  },
-  AddCardView: {
-    screen: AddCardView
-  },
-})
 
 const Stack = StackNavigator({
   DeckListView: {
     screen: DeckListView
   },
   IndividualDeckView: {
-    screen: StackIndividual
-  }
+    screen: IndividualDeckView
+  },
+  AddCardView: {
+    screen: AddCardView
+  },
+}, {
+  navigationOptions: {
+    header: null
+  },
 })
+
 
 
   const Tabs = TabNavigator({
@@ -44,7 +44,8 @@ const Stack = StackNavigator({
         tabBarLabel: 'NEW DECK',
       }
     }
-  }, {
+  },
+   {
   navigationOptions: {
     header: null
   },
@@ -56,18 +57,18 @@ const Stack = StackNavigator({
   },
     style: {
       backgroundColor: 'white',
-      shadowColor: 'rgba(0,0,0,0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
-    }
+
   }
+}
 })
 
 export default class App extends React.Component {
+
+  static navigationOptions = {
+      header: {
+        visible: false,
+      }
+    }
 
   render() {
 
