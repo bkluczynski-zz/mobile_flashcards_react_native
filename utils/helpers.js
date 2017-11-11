@@ -5,7 +5,8 @@ export const DECK_STORAGE_KEY = 'MobileFlashcards:deck'
 export function saveDeckTitle(title){
     AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
      [title] : {
-       'title' : title
+       'title' : title,
+       'questions' : [],
      }
    }), () => {
      AsyncStorage.getItem(DECK_STORAGE_KEY)

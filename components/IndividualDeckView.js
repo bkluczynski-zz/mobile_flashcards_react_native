@@ -6,8 +6,8 @@ import DeckListView from './DeckListView'
 
 class IndividualDeckView extends Component {
 
-  onPress = () => {
-    this.props.navigation.navigate('AddCardView')
+  handleOnPress = (title) => {
+    this.props.navigation.navigate('AddCardView', { title:  title})
   }
 
   goHome = () => {
@@ -16,12 +16,13 @@ class IndividualDeckView extends Component {
 
   render(){
     const { title } = this.props.navigation.state.params
+    console.log("title2", title)
     return (
       <View style={styles.container}>
         <Text style={{paddingBottom: 60, fontSize: 30}}>
           {title}
         </Text>
-        <SubmitButton text={"Add Card"} onPress={this.onPress}/>
+        <SubmitButton text={"Add Card"} onPress={() => this.handleOnPress(title)}/>
         <SubmitButton text={"Start Quiz"}/>
         <SubmitButton text={"Go Back"} onPress={() => this.props.navigation.goBack()}/>
       </View>

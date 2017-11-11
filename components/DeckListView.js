@@ -18,8 +18,7 @@ class DeckListView extends Component {
   }
 
   onPress = (title) => {
-    this.props.navigation.navigate('IndividualDeckView',{title : title})
-    console.log('i got pressed')
+    this.props.navigation.navigate('IndividualDeckView', {title : title})
   }
 
 
@@ -36,6 +35,7 @@ class DeckListView extends Component {
           <SingleDeck
             key={deck.title}
             title={deck.title}
+            cardsCounter={deck.questions.length}
             onPress={() => this.onPress(deck.title)}
             />
         ))}

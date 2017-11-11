@@ -15,15 +15,18 @@ class AddCardView extends Component {
   submit = () => {
     const entry = this.state;
     const { dispatch } = this.props;
+    const { title } = this.props.navigation.state.params
 
-    //hardcoded will need to change to title later
-    dispatch(addCardToDeck("Bart", entry))
+    //add to redux
+    dispatch(addCardToDeck(title, entry))
+
+    //save to db
 
   }
 
   render(){
 
-console.log(this.props)
+console.log('Add card view', this.props)
 
     return (
       <View style={styles.container}>
@@ -52,6 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white'
   },
   input : {
     width: 300,
