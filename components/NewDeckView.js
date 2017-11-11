@@ -11,6 +11,7 @@ import SubmitButton from './SubmitButton'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 import { saveDeckTitle } from '../utils/helpers'
+import { NavigationActions } from 'react-navigation'
 
 
 class NewDeckView extends Component {
@@ -33,6 +34,14 @@ class NewDeckView extends Component {
       deckTitle: ''
     }))
 
+    this.toHome()
+
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({
+      key: 'NewDeckView'
+    }))
   }
 
   render(){
