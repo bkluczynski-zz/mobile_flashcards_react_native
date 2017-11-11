@@ -11,25 +11,32 @@ import DeckListView from './components/DeckListView'
 import StatusBar from './components/StatusBar'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import IndividualDeckView from './components/IndividualDeckView'
+import QuizView from './components/QuizView'
 
+
+const IndividualTabs = StackNavigator({
+  IndividualDeckView: { screen: IndividualDeckView},
+  AddCardView: { screen: AddCardView},
+  QuizView: {screen : QuizView}
+},
+{
+  navigationOptions: {
+    header: null
+}
+})
 
 const Stack = StackNavigator({
   DeckListView: {
     screen: DeckListView
   },
   IndividualDeckView: {
-    screen: IndividualDeckView
-  },
-  AddCardView: {
-    screen: AddCardView
+    screen: IndividualTabs
   },
 }, {
   navigationOptions: {
     header: null
   },
 })
-
-
 
   const Tabs = TabNavigator({
     DeckListView: {
