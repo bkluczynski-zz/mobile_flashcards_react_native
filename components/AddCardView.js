@@ -3,6 +3,7 @@ import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-nativ
 import SubmitButton from './SubmitButton'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../actions'
+import { addCard } from '../utils/helpers'
 
 
 class AddCardView extends Component {
@@ -10,6 +11,10 @@ class AddCardView extends Component {
   state = {
     question: '',
     answer: '',
+  }
+
+  goHome = () => {
+    this.props.navigation.goBack()
   }
 
   submit = () => {
@@ -21,6 +26,9 @@ class AddCardView extends Component {
     dispatch(addCardToDeck(title, entry))
 
     //save to db
+    addCard(title, entry)    //go back home
+
+    this.goHome()
 
   }
 
