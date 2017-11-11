@@ -2,35 +2,38 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux'
 import SubmitButton from './SubmitButton'
+import TextButton from './TextButton'
 
 
 class QuizView extends Component {
 
-  componentDidMount(){
-    this.playQuiz(filteredCards)
-  }
-
   state = {
     question : '',
     answer : '',
+    showAnswer: false
+  }
+
+  componentDidMount(){
+    this.playQuiz(this.props.cards[0].questions)
   }
 
 
   playQuiz = (cardsToPlay) => {
-    const { question, answer } = cardsToPlay.pop()
-    this.setState({question})
-    this.setState({answer})
+    if (cardsToPlay.length > 0) {
+      const { question, answer } = cardsToPlay.pop()
+      this.setState({question, answer})
+    }
   }
 
   correctAnswer = (cardsToPlay) => {
     this.playQuiz(cardsToPlay)
+    this.setState({showAnswer : false})
   }
 
   incorrectAnswer = (cardsToPlay) => {
     this.playQuiz(cardsToPlay)
+    this.setState({showAnswer : false})
   }
-
-
 
   render(){
 
@@ -44,8 +47,18 @@ class QuizView extends Component {
       <View style={styles.container}>
           <Text style={{fontSize: 30}}>
             {this.state.question}
-            {this.state.answer}
           </Text>
+            <TextButton style={{padding: 10}} onPress={() => this.setState({showAnswer: true})}>
+              {this.state.showAnswer
+              ? <Text>
+                {this.state.answer}
+               </Text>
+              : <Text>
+                Answer
+                </Text>
+
+              }
+            </TextButton>
         <SubmitButton onPress={() => this.correctAnswer(filteredCards)} text={'CORRECT'}/>
         <SubmitButton onPress={() => this.incorrectAnswer(filteredCards)} text={'INCORRECT'}/>
       </View>
