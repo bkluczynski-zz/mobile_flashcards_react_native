@@ -1,4 +1,3 @@
-<script src="http://localhost:8097"></script>
 import React, { Component } from 'react'
 import { View,
          TouchableOpacity,
@@ -29,20 +28,18 @@ class NewDeckView extends Component {
     //save deck title in asyncStorage
     saveDeckTitle(deckTitle)
 
+    this.toNewDeck(deckTitle)
     //clear the state of deckTitle after successful submition
     this.setState(() => ({
       deckTitle: ''
     }))
-
-    this.toHome()
-
   }
 
-  toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back({
-      key: 'NewDeckView'
-    }))
+  toNewDeck = (deckTitle) => {
+    this.props.navigation.navigate('IndividualDeckView', { title:  deckTitle})
   }
+
+
 
   render(){
 

@@ -19,7 +19,6 @@ class QuizView extends Component {
 
   componentDidMount(){
     this.setState({questions : this.props.cards[0].questions.slice()}, () => { this.playQuiz(this.state.questions)} )
-
   }
 
 
@@ -37,6 +36,17 @@ class QuizView extends Component {
 
   goHome = () => {
     this.props.navigation.dispatch(NavigationActions.back())
+  }
+
+  reset = () => {
+    this.setState({
+      question : '',
+      answer : '',
+      showAnswer: false,
+      correctAnswer : 0,
+      allAnswers : 0,
+      questions : this.props.cards[0].questions.slice()
+    }, () => { this.playQuiz(this.state.questions) })
   }
 
   correctAnswer = (cardsToPlay) => {
@@ -57,14 +67,9 @@ class QuizView extends Component {
     const { title } = this.props.navigation.state.params
     const { cards } = this.props
     const filteredCards = this.state.questions
-
     const allCardsInDeck = this.props.cardsNumber
     const cardsLeftInGame = this.state.questions.length
 
-    console.log('caaards', this.state)
-
-    console.log('cards', filteredCards)
-    console.log('cards2', cards[0].questions)
     return (
       <View style={styles.container}>
         <Text style={{fontSize: 15}}>
@@ -73,7 +78,7 @@ class QuizView extends Component {
           null}
         </Text>
           <Text>
-            {`Cards left to be played: ${cardsLeftInGame} out of ${allCardsInDeck}`}
+            {`Cards left to be put on deck: ${cardsLeftInGame} out of ${allCardsInDeck}`}
           </Text>
           <Text style={{fontSize: 30}}>
             {this.state.question}
@@ -91,8 +96,17 @@ class QuizView extends Component {
         <SubmitButton onPress={() => this.correctAnswer(filteredCards)} text={'CORRECT'}/>
         <SubmitButton onPress={() => this.incorrectAnswer(filteredCards)}
          text={'INCORRECT'}/>
-       <SubmitButton onPress={this.goHome}
-          text={'Go Back'}/>
+       {
+         this.state.allAnswers === allCardsInDeck &&
+         <View>
+           <SubmitButton onPress={this.goHome}
+             text={'Go Back'}/>
+           <SubmitButton onPress={this.reset}
+             text={'Reset Game'}/>
+         </View>
+       }
+
+
       </View>
     )
   }

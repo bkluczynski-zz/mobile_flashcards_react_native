@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView} from 'react-native'
 import { getAllDecks } from '../utils/helpers'
 import { receiveAllDecks } from '../actions'
 import { connect } from 'react-redux'
@@ -17,8 +17,8 @@ class DeckListView extends Component {
     getAllDecks().then(results => dispatch(receiveAllDecks(JSON.parse(results))))
   }
 
-  onPress = (title) => {
-    this.props.navigation.navigate('IndividualDeckView', {title : title})
+  onPress = (title, numberOfCards) => {
+    this.props.navigation.navigate('IndividualDeckView', {title : title, numberOfCards:numberOfCards })
   }
 
 
@@ -28,18 +28,20 @@ class DeckListView extends Component {
     console.log("this navigation deck,", this.props)
 
     return (
-      <List
-        containerStyle={{marginTop:0}}
-        >
-        {decks && Object.keys(decks).map(key => decks[key]).map(deck => (
-          <SingleDeck
-            key={deck.title}
-            title={deck.title}
-            cardsCounter={deck.questions.length}
-            onPress={() => this.onPress(deck.title)}
-            />
-        ))}
-      </List>
+      <ScrollView>
+        <List
+          containerStyle={{marginTop:0}}
+          >
+          {decks && Object.keys(decks).map(key => decks[key]).map(deck => (
+            <SingleDeck
+              key={deck.title}
+              title={deck.title}
+              cardsCounter={deck.questions.length}
+              onPress={() => this.onPress(deck.title, deck.questions.length)}
+              />
+          ))}
+        </List>
+      </ScrollView>
     )
 
   }

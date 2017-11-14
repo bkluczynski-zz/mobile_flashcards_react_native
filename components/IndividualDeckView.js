@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import SubmitButton from './SubmitButton'
-import { connect } from 'redux'
+import { connect } from 'react-redux'
 import DeckListView from './DeckListView'
 import { NavigationActions } from 'react-navigation'
 
@@ -22,11 +22,14 @@ class IndividualDeckView extends Component {
 
   render(){
     const { title } = this.props.navigation.state.params
-    console.log("title2", title)
+
     return (
       <View style={styles.container}>
-        <Text style={{paddingBottom: 60, fontSize: 30}}>
+        <Text style={{ fontSize: 30 }}>
           {title}
+        </Text>
+        <Text style={{ fontSize: 20 }} >
+          {`Cards: ${this.props.numberOfCards}`}
         </Text>
         <SubmitButton text={"Add Card"} onPress={() => this.goToAddingCard(title)}/>
         <SubmitButton text={"Start Quiz"} onPress={() => this.goToQuiz(title)}/>
@@ -36,6 +39,13 @@ class IndividualDeckView extends Component {
     )
   }
 
+}
+
+function mapStateToProps(state, ownProps){
+  return {
+    numberOfCards : Object.keys(state).map(deck => state[deck])
+    .filter(deck => deck.title === ownProps.navigation.state.params.title)[0].questions.length
+  }
 }
 
 const styles = StyleSheet.create({
@@ -48,4 +58,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default IndividualDeckView;
+export default connect(mapStateToProps)(IndividualDeckView);
