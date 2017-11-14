@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux'
 import SubmitButton from './SubmitButton'
 import TextButton from './TextButton'
+import { NavigationActions } from 'react-navigation'
 
 
 class QuizView extends Component {
@@ -13,10 +14,12 @@ class QuizView extends Component {
     showAnswer: false,
     correctAnswer : 0,
     allAnswers : 0,
+    questions : []
   }
 
   componentDidMount(){
-    this.playQuiz(this.props.cards[0].questions)
+    this.setState({questions : this.props.cards[0].questions.slice()}, () => { this.playQuiz(this.state.questions)} )
+
   }
 
 
@@ -32,6 +35,9 @@ class QuizView extends Component {
     return `Success rate : ${Math.round( correctAnswer / allAnswers * 100)}%`
   }
 
+  goHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back())
+  }
 
   correctAnswer = (cardsToPlay) => {
     this.playQuiz(cardsToPlay)
@@ -50,13 +56,15 @@ class QuizView extends Component {
 
     const { title } = this.props.navigation.state.params
     const { cards } = this.props
-    const filteredCards = cards[0].questions
+    const filteredCards = this.state.questions
+
     const allCardsInDeck = this.props.cardsNumber
-    const cardsLeftInGame = cards[0].questions.length
+    const cardsLeftInGame = this.state.questions.length
 
     console.log('caaards', this.state)
 
     console.log('cards', filteredCards)
+    console.log('cards2', cards[0].questions)
     return (
       <View style={styles.container}>
         <Text style={{fontSize: 15}}>
@@ -81,7 +89,10 @@ class QuizView extends Component {
               }
             </TextButton>
         <SubmitButton onPress={() => this.correctAnswer(filteredCards)} text={'CORRECT'}/>
-        <SubmitButton onPress={() => this.incorrectAnswer(filteredCards)} text={'INCORRECT'}/>
+        <SubmitButton onPress={() => this.incorrectAnswer(filteredCards)}
+         text={'INCORRECT'}/>
+       <SubmitButton onPress={this.goHome}
+          text={'Go Back'}/>
       </View>
     )
   }
