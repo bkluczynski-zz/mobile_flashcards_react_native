@@ -22,8 +22,9 @@ const IndividualTabs = StackNavigator({
 {
   navigationOptions: {
     header: null
+  }
 }
-})
+)
 
 const Stack = StackNavigator({
   DeckListView: {

@@ -3,6 +3,8 @@ import { View, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import SubmitButton from './SubmitButton'
 import { connect } from 'redux'
 import DeckListView from './DeckListView'
+import { NavigationActions } from 'react-navigation'
+
 
 class IndividualDeckView extends Component {
 
@@ -15,7 +17,7 @@ class IndividualDeckView extends Component {
   }
 
   goHome = () => {
-    this.props.navigation.goBack()
+    this.props.navigation.dispatch(NavigationActions.back())
   }
 
   render(){
@@ -28,7 +30,7 @@ class IndividualDeckView extends Component {
         </Text>
         <SubmitButton text={"Add Card"} onPress={() => this.goToAddingCard(title)}/>
         <SubmitButton text={"Start Quiz"} onPress={() => this.goToQuiz(title)}/>
-        <SubmitButton text={"Go Back"} onPress={() => this.props.navigation.goBack()}/>
+        <SubmitButton text={"Go Back"} onPress={this.goHome}/>
       </View>
 
     )
