@@ -36,6 +36,7 @@ class QuizView extends Component {
 
   goHome = () => {
     this.props.navigation.dispatch(NavigationActions.back())
+    clearLocalNotification().then(setLocalNotification)
   }
 
   reset = () => {
@@ -48,6 +49,7 @@ class QuizView extends Component {
       questions : this.props.cards[0].questions.slice()
     }, () => { this.playQuiz(this.state.questions) })
   }
+
 
   correctAnswer = (cardsToPlay) => {
     this.playQuiz(cardsToPlay)
@@ -99,7 +101,6 @@ class QuizView extends Component {
        {
          this.state.allAnswers === allCardsInDeck &&
          <View>
-           {clearLocalNotification().then(setLocalNotification)}
            <SubmitButton onPress={this.goHome}
              text={'Go Back'}/>
            <SubmitButton onPress={this.reset}
