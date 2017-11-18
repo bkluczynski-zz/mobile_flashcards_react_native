@@ -12,6 +12,7 @@ import StatusBar from './components/StatusBar'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import IndividualDeckView from './components/IndividualDeckView'
 import QuizView from './components/QuizView'
+import { setLocalNotification } from './utils/helpers'
 
 
 const IndividualTabs = StackNavigator({
@@ -71,6 +72,10 @@ const Stack = StackNavigator({
 })
 
 export default class App extends React.Component {
+
+  componentDidMount(){
+    setLocalNotification();
+  }
 
   static navigationOptions = {
       header: {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import SubmitButton from './SubmitButton'
 import TextButton from './TextButton'
 import { NavigationActions } from 'react-navigation'
-
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class QuizView extends Component {
 
@@ -99,6 +99,7 @@ class QuizView extends Component {
        {
          this.state.allAnswers === allCardsInDeck &&
          <View>
+           {clearLocalNotification().then(setLocalNotification)}
            <SubmitButton onPress={this.goHome}
              text={'Go Back'}/>
            <SubmitButton onPress={this.reset}
